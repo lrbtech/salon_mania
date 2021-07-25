@@ -56,13 +56,22 @@ public function send_sms($phone,$msg)
   curl_close($ch);
 }
 
-	public function SalonRegister(){
+	public function home(){
+		$city = area::where('parent_id',0)->get();
+        $area = area::where('parent_id','!=',0)->get();
+        $terms = terms_and_condition::first();
+        $country = country::all();
+        return view('pages.home',compact('city','area','terms','country'));
+	}
+
+    public function SalonRegister(){
 		$city = area::where('parent_id',0)->get();
         $area = area::where('parent_id','!=',0)->get();
         $terms = terms_and_condition::first();
         $country = country::all();
         return view('pages.salon_register',compact('city','area','terms','country'));
 	}
+
     public function saveSalonRegister(Request $request){
         $request->validate([
             'email'=> 'required|unique:users',

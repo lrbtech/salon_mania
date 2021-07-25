@@ -42,7 +42,7 @@ use Illuminate\Support\Facades\Route;
 	return view('pages.success_page');
 });
 
-Route::get('/', 'PageController@SalonRegister');
+Route::get('/', 'PageController@home');
 Route::get('/send-sms/{id}/{id1}', 'PageController@send_sms');
 Route::get('/salon-register', 'PageController@SalonRegister');
 Route::POST('/save-salon-register', 'PageController@saveSalonRegister');
