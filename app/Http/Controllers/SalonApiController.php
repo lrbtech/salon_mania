@@ -410,6 +410,26 @@ class SalonApiController extends Controller
         return response()->json($datas); 
     }
 
+    public function getBookingProduct($id){
+        $package = booking_product::where('booking_id',$id)->get();
+        $data =array();
+        if(count($package) >0){
+            foreach ($package as $key => $value) {
+                $pack = product::find($value->package_id);
+                $data = array(
+                    'product_id' => $value->product_id,
+                    'product_name' => $value->product_name,
+                    'product_price' => $value->price,
+                    'product_image' => $pack->image,
+                );
+                $datas[] = $data;
+            }   
+        }else{
+            $datas=array();
+        }
+        return response()->json($datas); 
+    }
+
     public function getBookingTransaction($id){
         $booking = booking::where('customer_id',$id)->get();
         $data =array();

@@ -274,7 +274,7 @@ function Save(){
         {                
             $("#form")[0].reset();
             $('#popup_modal').modal('hide');
-            $('.zero-configuration').load(location.href+' .zero-configuration');
+            location.reload();
             toastr.success(data, 'Successfully Save');
         },error: function (data) {
             var errorData = data.responseJSON.errors;
@@ -296,7 +296,7 @@ function Save(){
         console.log(data);
           $("#form")[0].reset();
            $('#popup_modal').modal('hide');
-           $('.zero-configuration').load(location.href+' .zero-configuration');
+           location.reload();
            toastr.success(data, 'Successfully Update');
       },error: function (data) {
         var errorData = data.responseJSON.errors;
@@ -323,7 +323,7 @@ function Send(){
         {                
             $("#form")[0].reset();
             $('#popup_modal').modal('hide');
-            $('.zero-configuration').load(location.href+' .zero-configuration');
+            location.reload();
             toastr.success(data, 'Successfully Save');
         },error: function (data) {
             var errorData = data.responseJSON.errors;
@@ -345,7 +345,7 @@ function Send(){
         console.log(data);
           $("#form")[0].reset();
            $('#popup_modal').modal('hide');
-           $('.zero-configuration').load(location.href+' .zero-configuration');
+           location.reload();
            toastr.success(data, 'Successfully Update');
       },error: function (data) {
         var errorData = data.responseJSON.errors;
@@ -432,7 +432,7 @@ function Delete(id){
         success: function(data)
         {
           toastr.success(data, 'Successfully Delete');
-          $('.zero-configuration').load(location.href+' .zero-configuration');
+          location.reload();
         }
       });
     } 
@@ -448,7 +448,7 @@ function SendNotification(id){
         success: function(data)
         {
           toastr.success(data, 'Successfully Send');
-          $('.zero-configuration').load(location.href+' .zero-configuration');
+          location.reload();
         }
       });
     } 

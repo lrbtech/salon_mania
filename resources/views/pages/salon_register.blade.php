@@ -40,7 +40,7 @@
     <link rel="stylesheet" type="text/css" href="/app-assets/css/plugins/forms/wizard.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('toastr/toastr.css')}}">
     <meta name="_token" content="{{ csrf_token() }}"/>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCanHknp355-rJzwBPbz1FZDWs9t9ym_lY&sensor=false&libraries=places"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9SWOYE9g7ftPs7xRubRz02TzwaOy5spA&sensor=false&libraries=places"></script>
 
 <style type="text/css">
     .input-controls {

@@ -229,7 +229,7 @@ public function sendNotification($id){
         CURLOPT_CUSTOMREQUEST => "POST",
         CURLOPT_POSTFIELDS =>"{\r\n\"to\":\"$salon1->fcm_token\",\r\n \"notification\" : {\r\n  \"sound\" : \"default\",\r\n  \"body\" :  \"$push_notification->description\",\r\n  \"title\" : \"$push_notification->title\",\r\n  \"content_available\" : true,\r\n  \"priority\" : \"high\"\r\n },\r\n \"data\" : {\r\n  \"sound\" : \"default\",\r\n  \"click_action\" : \"FLUTTER_NOTIFICATION_CLICK\",\r\n  \"id\" : \"$push_notification->id\",\r\n  \"body\" :  \"$push_notification->description\",\r\n  \"title\" : \"$push_notification->title\",\r\n  \"content_available\" : true,\r\n  \"priority\" : \"high\"\r\n }\r\n}",
         CURLOPT_HTTPHEADER => array(
-            "Authorization: key=AAAAoZ2bbM0:APA91bF6daZlElRDd4EhxqKm3ThtWlEDugroa1a83scavpILHohGCZWUfN5DX7zsfRnZBHUWJF1rorEdvm4vAi6xxAuC9pSFfEnqZdy4_qkdQSVG23v6K7LADuBzQnrldACFpI9PnFoN",
+            "Authorization: key=AAAAQfsJwUI:APA91bGf-mxvaz1HHZCMMAHKDdbTCt6Jw_DE95GEyxNeU_otDjjO7bqJYpKSu-kIdxmLVt7SsOPP6pne4CUxZhwafPKGbx-ZfMACHjkhJtuG-Cg6SDE4YqtiQkcFPKlM83CAvQv9Sn-y",
             "Content-Type: application/json"
         ),
         ));
@@ -253,7 +253,7 @@ public function sendNotification($id){
         CURLOPT_CUSTOMREQUEST => "POST",
         CURLOPT_POSTFIELDS =>"{\r\n\"to\":\"$customer->firebase_key\",\r\n \"notification\" : {\r\n  \"sound\" : \"default\",\r\n  \"body\" :  \"$push_notification->description\",\r\n  \"title\" : \"$push_notification->title\",\r\n  \"content_available\" : true,\r\n  \"priority\" : \"high\"\r\n },\r\n \"data\" : {\r\n  \"sound\" : \"default\",\r\n  \"click_action\" : \"FLUTTER_NOTIFICATION_CLICK\",\r\n  \"id\" : \"$push_notification->id\",\r\n  \"body\" :  \"$push_notification->description\",\r\n  \"title\" : \"$push_notification->title\",\r\n  \"content_available\" : true,\r\n  \"priority\" : \"high\"\r\n }\r\n}",
         CURLOPT_HTTPHEADER => array(
-            "Authorization: key=AAAAoZ2bbM0:APA91bF6daZlElRDd4EhxqKm3ThtWlEDugroa1a83scavpILHohGCZWUfN5DX7zsfRnZBHUWJF1rorEdvm4vAi6xxAuC9pSFfEnqZdy4_qkdQSVG23v6K7LADuBzQnrldACFpI9PnFoN",
+            "Authorization: key=AAAAQfsJwUI:APA91bGf-mxvaz1HHZCMMAHKDdbTCt6Jw_DE95GEyxNeU_otDjjO7bqJYpKSu-kIdxmLVt7SsOPP6pne4CUxZhwafPKGbx-ZfMACHjkhJtuG-Cg6SDE4YqtiQkcFPKlM83CAvQv9Sn-y",
             "Content-Type: application/json"
         ),
         ));
@@ -277,7 +277,7 @@ public function sendNotification($id){
             CURLOPT_CUSTOMREQUEST => "POST",
             CURLOPT_POSTFIELDS =>"{\r\n\"to\":\"$salon->fcm_token\",\r\n \"notification\" : {\r\n  \"sound\" : \"default\",\r\n  \"body\" :  \"$push_notification->description\",\r\n  \"title\" : \"$push_notification->title\",\r\n  \"content_available\" : true,\r\n  \"priority\" : \"high\"\r\n },\r\n \"data\" : {\r\n  \"sound\" : \"default\",\r\n  \"click_action\" : \"FLUTTER_NOTIFICATION_CLICK\",\r\n  \"id\" : \"$push_notification->id\",\r\n  \"body\" :  \"$push_notification->description\",\r\n  \"title\" : \"$push_notification->title\",\r\n  \"content_available\" : true,\r\n  \"priority\" : \"high\"\r\n }\r\n}",
             CURLOPT_HTTPHEADER => array(
-                "Authorization: key=AAAAoZ2bbM0:APA91bF6daZlElRDd4EhxqKm3ThtWlEDugroa1a83scavpILHohGCZWUfN5DX7zsfRnZBHUWJF1rorEdvm4vAi6xxAuC9pSFfEnqZdy4_qkdQSVG23v6K7LADuBzQnrldACFpI9PnFoN",
+                "Authorization: key=AAAAQfsJwUI:APA91bGf-mxvaz1HHZCMMAHKDdbTCt6Jw_DE95GEyxNeU_otDjjO7bqJYpKSu-kIdxmLVt7SsOPP6pne4CUxZhwafPKGbx-ZfMACHjkhJtuG-Cg6SDE4YqtiQkcFPKlM83CAvQv9Sn-y",
                 "Content-Type: application/json"
             ),
             ));
@@ -301,7 +301,7 @@ public function sendNotification($id){
         CURLOPT_CUSTOMREQUEST => "POST",
         CURLOPT_POSTFIELDS =>"{\r\n\"to\":\"$customer->firebase_key\",\r\n \"notification\" : {\r\n  \"sound\" : \"default\",\r\n  \"body\" :  \"$push_notification->description\",\r\n  \"title\" : \"$push_notification->title\",\r\n  \"content_available\" : true,\r\n  \"priority\" : \"high\"\r\n },\r\n \"data\" : {\r\n  \"sound\" : \"default\",\r\n  \"click_action\" : \"FLUTTER_NOTIFICATION_CLICK\",\r\n  \"id\" : \"$push_notification->id\",\r\n  \"body\" :  \"$push_notification->description\",\r\n  \"title\" : \"$push_notification->title\",\r\n  \"content_available\" : true,\r\n  \"priority\" : \"high\"\r\n }\r\n}",
         CURLOPT_HTTPHEADER => array(
-            "Authorization: key=AAAAoZ2bbM0:APA91bF6daZlElRDd4EhxqKm3ThtWlEDugroa1a83scavpILHohGCZWUfN5DX7zsfRnZBHUWJF1rorEdvm4vAi6xxAuC9pSFfEnqZdy4_qkdQSVG23v6K7LADuBzQnrldACFpI9PnFoN",
+            "Authorization: key=AAAAQfsJwUI:APA91bGf-mxvaz1HHZCMMAHKDdbTCt6Jw_DE95GEyxNeU_otDjjO7bqJYpKSu-kIdxmLVt7SsOPP6pne4CUxZhwafPKGbx-ZfMACHjkhJtuG-Cg6SDE4YqtiQkcFPKlM83CAvQv9Sn-y",
             "Content-Type: application/json"
         ),
         ));

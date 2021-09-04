@@ -45,11 +45,8 @@ Route::get('/get-salon-details/{id}/{lat}/{lng}', 'ApiController@getApiSalonDeta
 Route::get('/get-spa-details/{id}/{lat}/{lng}', 'ApiController@getApiSpaDetails');
 Route::get('/get-makeup-details/{id}/{lat}/{lng}', 'ApiController@getApiMakeupDetails');
 Route::get('/get-beauty-details/{id}/{lat}/{lng}', 'ApiController@getApiBeautyDetails');
-Route::get('/get-dermatologist-details/{id}/{lat}/{lng}', 'ApiController@getApiDermatologistDetails');
-Route::get('/get-home-details/{id}/{lat}/{lng}', 'ApiController@getApiHomeDetails');
 
-Route::get('/get-salon-product/{id}', 'ApiController@getSalonProduct');
-Route::get('/exclusive-product', 'ApiController@exclusiveSalonProduct');
+Route::get('/get-home-details/{id}/{lat}/{lng}', 'ApiController@getApiHomeDetails');
 
 //homepage others
 Route::get('/get-other-services/{city}/{lat}/{lng}', 'ApiController@getApiOtherServices');
@@ -131,6 +128,14 @@ Route::get('/get-review/{order_id}', 'ApiController@getReview');
 //split address
 Route::post('/split-address', 'ApiController@splitAddress');
 
+//latest
+Route::get('/get-dermatologist-details/{city}/{lat}/{lng}', 'ApiController@getApiDermatologistDetails');
+Route::get('/get-petgrooming-details/{city}/{lat}/{lng}', 'ApiController@getApiPetGroomingDetails');
+Route::get('/get-salon-product/{id}', 'ApiController@getSalonProduct');
+Route::get('/exclusive-product', 'ApiController@exclusiveSalonProduct');
+
+Route::get('/get-weeks/{id}', 'ApiController@getweeks');
+
 
 
 //salon
@@ -153,12 +158,13 @@ Route::POST('/booking-otp-verified', 'SalonApiController@BookingOtpVerified');
 Route::get('/get-salon-booking-item/{id}', 'SalonApiController@getBookingItem');
 Route::get('/get-salon-booking-package/{id}', 'SalonApiController@getBookingPackage');
 Route::get('/get-salon-booking-transaction/{id}', 'SalonApiController@getBookingTransaction');
+Route::get('/get-salon-booking-product/{id}', 'SalonApiController@getBookingProduct');
 
 Route::post('/update-booking-status', 'SalonApiController@uodateBookingStatus');
 
 //chat
 Route::get('/get-chat-salon/{id}', 'SalonApiController@getChatSalon');
-Route::post('/save-chat-salon', 'SalonApiController@saveChatSalon');
+Route::post('/save-chat-salon', 'Salonq                                                                                                                                                                                 ApiController@saveChatSalon');
 
 //chat
 Route::get('/get-salon-service/{id}', 'SalonApiController@getSalonService');

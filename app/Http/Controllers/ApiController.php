@@ -1046,6 +1046,72 @@ class ApiController extends Controller
         return response()->json($datas); 
     }
 
+
+    public function getApiPetGroomingDetails($city,$lat,$lon){
+        $citys = area::where('area',$city)->first();
+        //$user = User::where('role_id','admin')->where('busisness_type',1)->where('city',$citys->id)->get();
+
+        $user = DB::table("app_petgroomings")
+        ->join('users', 'users.id', '=', 'app_petgroomings.salon_id')
+        ->where("app_petgroomings.city_id",$citys->id)
+        ->select("users.*"
+        ,DB::raw("6371 * acos(cos(radians(" . $lat . ")) 
+        * cos(radians(users.latitude)) 
+        * cos(radians(users.longitude) - radians(" . $lon . ")) 
+        + sin(radians(" .$lat. ")) 
+        * sin(radians(users.latitude))) AS distance"))
+        //->orderBy('distance', 'ASC')
+        ->where("users.role_id",'admin')
+        ->where("users.busisness_type",7)
+        ->where('users.status',1)
+        ->orderBy('app_petgroomings.order_id', 'ASC')
+        //->groupBy("users.id")
+        ->get();
+
+        $data =array();
+        $datas =array();
+        foreach ($user as $key => $value) {
+            $distance=0;
+            if(round($value->distance,3) > 0.999 ){
+                $distance = round($value->distance,3) . ' km';
+            }
+            else{
+                $distance = substr($value->distance,-3) . ' m';
+            }
+            $data = array(
+                'review_count' => '',
+                'review_average' => '',
+                'salon_id' => $value->id,
+                'cover_image' => '',
+                'address' => '',
+                'salon_name' => $value->salon_name,
+                'distance' => $distance,
+            );
+            if(!empty($value->address)){
+                $data['address'] = $value->address;
+            }
+            if(empty($value->salon_name)){
+                $data['salon_name'] = $value->name;
+            }
+            if(!empty($value->cover_image)){
+                $data['cover_image'] = $value->cover_image;
+            }
+            $q =DB::table('reviews as r');
+            $q->where('r.salon_id', '=', $value->id);
+            $q->where('r.status', '=', 1);
+            $q->groupBy('r.salon_id');
+            $q->select([DB::raw("(count(*)) AS review_count"), DB::raw("(sum(r.reviews) / count(*)) AS review_average")]);
+            $review = $q->first();
+
+            if(!empty($review)){
+                $data['review_count'] = $review->review_count;
+                $data['review_average'] = $review->review_average;
+            }
+            $datas[] = $data;
+        }   
+        return response()->json($datas); 
+    }
+
     public function getApiHomeDetails($city,$lat,$lon){
         $citys = area::where('area',$city)->first();
         //$user = User::where('role_id','admin')->where('busisness_type',1)->where('city',$citys->id)->get();
@@ -1223,10 +1289,10 @@ class ApiController extends Controller
         $datas=array();
         foreach ($product as $key => $value) {
             $data = array(
-                'salon_id' => $value->salon_id,
+                'product_id' => $value->id,
                 'product_name_english' => $value->product_name_english,
                 'product_name_arabic' => $value->product_name_arabic,
-                'price' => $value->price,
+                'price' => (int)$value->price,
                 'description' => $value->description,
                 'image' => '',
             );
@@ -1396,6 +1462,7 @@ class ApiController extends Controller
     public function getShopWorkers($id){
         $user = User::where('user_id',$id)->get();
         $data =array();
+        $datas =array();
         foreach ($user as $key => $value) {
             $data = array(
                 'worker_id' => $value->id,
@@ -1727,8 +1794,11 @@ class ApiController extends Controller
                 'country_code' => $value->country_code,
                 'country_name_english' => $value->country_name_english,
                 'country_name_arabic' => $value->country_name_arabic,
-                'image' => $value->image,
+                'image' => '',
             );
+            if($value->image != null){
+                $data['image'] = $value->image;
+            }
             $datas[] = $data;
         }   
         return response()->json($datas); 
@@ -1831,10 +1901,8 @@ if(count($coupon)>0){
     
 }
 
-    private function getAccessToken(){
-        //$apikey="YmZjY2MwZjktMjhjNS00Njk1LWFjN2UtNDJmNWJjYTBhOGExOjY2MWI3OWRjLTRkODgtNDAzYi05MWY0LTM0YTBhZjY3YTE5MA==";
-        
-        $apikey="YmE2MjU0YmQtMjZhMi00MjE3LWIxODMtN2IwODI5NGZlN2MyOjZkZjVjNDNiLTQ2NjktNDE5YS1iYTc0LTAyYjI1MzcyNTQ0Zg==";     
+    private function getAccessToken(){        
+        $apikey="MmNjNTRhMjctOTlhNy00Y2U5LThhYWEtZTY3NDAyZTlmMDZmOjJhYzU0YTQ0LWZiMWUtNDM0ZS04ZGQzLTYxZTE1NDFjZTM1Mg==";     
         // enter your API key here
         $ch = curl_init(); 
         curl_setopt($ch, CURLOPT_URL, "https://api-gateway.sandbox.ngenius-payments.com/identity/auth/access-token"); 
@@ -1863,12 +1931,12 @@ if(count($coupon)>0){
         $postData->firstName = $customer->name; 
         $postData->email = $customer->email; 
         $postData->merchantAttributes = new StdClass();
-        $postData->merchantAttributes->redirectUrl = "http://app.isalonuae.com/payment-success";
+        $postData->merchantAttributes->redirectUrl = "http://86.97.188.149:5602/payment-success";
         $postData->amount = new StdClass();
         $postData->amount->currencyCode = "AED"; 
         $postData->amount->value = $amount; 
         
-        $outlet = "e437f4ad-8d6c-4621-bd89-c91672b4c88a";
+        $outlet = "b603c81e-dc26-40e7-8088-acd938b6440b";
         $token=$this->getAccessToken();
          
         $json = json_encode($postData);
@@ -1900,7 +1968,7 @@ if(count($coupon)>0){
     public function getRetrivePayment($id){
         $booking = booking::find($id);
         $orderID = $booking->order_id;
-        $outlet = "e437f4ad-8d6c-4621-bd89-c91672b4c88a";
+        $outlet = "b603c81e-dc26-40e7-8088-acd938b6440b";
         $token=$this->getAccessToken();
       
       $curl = curl_init();
@@ -2011,7 +2079,7 @@ if(count($coupon)>0){
         $booking->customer_id = $request->customer_id;
         $booking->appointment_date = date('Y-m-d',strtotime($request->appointment_date));
         $booking->appointment_time = $request->appointment_time;
-        $booking->workers_id = $request->workers_id;
+        //$booking->workers_id = $request->workers_id;
         $booking->coupon_id = $request->coupon_id;
         $booking->coupon = $request->coupon;
         $booking->subtotal = $request->subtotal;
@@ -2098,9 +2166,10 @@ if(count($coupon)>0){
     public function saveBookingProduct(Request $request){
         try{
             $booking_product = new booking_product;
+            $product = product::find($request->product_id);
             $booking_product->booking_id = $request->booking_id;
             $booking_product->product_id = $request->product_id;
-            $booking_product->product_name = $request->product_name;
+            $booking_product->product_name = $product->product_name_english;
             $booking_product->price = $request->price;
             $booking_product->save();
         return response()->json(
@@ -2367,6 +2436,138 @@ if(count($coupon)>0){
             );
         }
         return response()->json($data); 
+    }
+
+    public function getweeks($id){
+        date_default_timezone_set("Asia/Dubai");
+        date_default_timezone_get();
+        $week = array('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
+
+        $today = date("l");
+
+        $day = date('Y-m-d', strtotime(' +1 day'));
+
+        $tomorrow = date('l', strtotime($day));
+
+        $third1 = date('Y-m-d', strtotime(' +2 day'));
+        $third = date('l', strtotime($third1));
+        $four1 = date('Y-m-d', strtotime(' +3 day'));
+        $four = date('l', strtotime($four1));
+        $five1 = date('Y-m-d', strtotime(' +4 day'));
+        $five = date('l', strtotime($five1));
+        $six1 = date('Y-m-d', strtotime(' +5 day'));
+        $six = date('l', strtotime($six1));
+        $seven1 = date('Y-m-d', strtotime(' +6 day'));
+        $seven = date('l', strtotime($seven1));
+
+        $time = date("h:i A"); 
+ 
+        $times = array('12:00 AM','01:00 AM','02:00 AM','03:00 AM','04:00 AM','05:00 AM','06:00 AM','07:00 AM','08:00 AM','09:00 AM','10:00 AM','11:00 AM','12:00 PM','01:00 PM','02:00 PM','03:00 PM','04:00 PM','05:00 PM','06:00 PM','07:00 PM','08:00 PM','09:00 PM','10:00 PM','11:00 PM');
+
+
+        foreach ($week as $key => $value) {
+            $getvalue = service_time::where('salon_id',$id)->where('days',$today)->where('status',1)->first();
+            if(!empty($getvalue)){
+                foreach($times as $row){
+                    if(strtotime($getvalue->open_time) < strtotime($row)){
+                        if(strtotime($time) < strtotime($row)){
+                            if(strtotime($row) < strtotime($getvalue->close_time)){
+                                if($today == $value){
+                                    $weeks = "Today";
+                                    $data[] = array(
+                                    'weeks' => $weeks,
+                                    'days' => date('d-m-Y', strtotime($today)),
+                                    'month' => date('M', strtotime($today)),
+                                    'date' => date('d', strtotime($today)),
+                                    );
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        foreach ($week as $key => $value) {
+            $getvalue = service_time::where('salon_id',$id)->where('days',$tomorrow)->where('status',1)->first();
+            if(!empty($getvalue)){
+                if($tomorrow == $value){
+                    $weeks = "Tomorrow";
+                    $data[] = array(
+                    'weeks' => $weeks,
+                    'days' => date('d-m-Y', strtotime($tomorrow)),
+                    'month' => date('M', strtotime($tomorrow)),
+                    'date' => date('d', strtotime($tomorrow)),
+                    );
+                }    
+            }       
+        }
+        foreach ($week as $key => $value) {
+            $getvalue = service_time::where('salon_id',$id)->where('days',$third)->where('status',1)->first();
+            if(!empty($getvalue)){
+                if($third == $value){
+                    $data[] = array(
+                    'weeks' => $value,
+                    'days' => date('d-m-Y', strtotime($third)),
+                    'month' => date('M', strtotime($third)),
+                    'date' => date('d', strtotime($third)),
+                    );
+                }
+            }
+        }
+        foreach ($week as $key => $value) {
+            $getvalue = service_time::where('salon_id',$id)->where('days',$four)->where('status',1)->first();
+            if(!empty($getvalue)){
+                if($four == $value){
+                    $data[] = array(
+                    'weeks' => $value,
+                    'days' => date('d-m-Y', strtotime($four)),
+                    'month' => date('M', strtotime($four)),
+                    'date' => date('d', strtotime($four)),
+                    );
+                }
+            }
+        }
+        foreach ($week as $key => $value) {
+            $getvalue = service_time::where('salon_id',$id)->where('days',$five)->where('status',1)->first();
+            if(!empty($getvalue)){
+                if($five == $value){
+                    $data[] = array(
+                    'weeks' => $value,
+                    'days' => date('d-m-Y', strtotime($five)),
+                    'month' => date('M', strtotime($five)),
+                    'date' => date('d', strtotime($five)),
+                    );
+                }
+            }
+        }
+        foreach ($week as $key => $value) {
+            $getvalue = service_time::where('salon_id',$id)->where('days',$six)->where('status',1)->first();
+            if(!empty($getvalue)){
+                if($six == $value){
+                    $data[] = array(
+                    'weeks' => $value,
+                    'days' => date('d-m-Y', strtotime($six)),
+                    'month' => date('M', strtotime($six)),
+                    'date' => date('d', strtotime($six)),
+                    );
+                }
+            }
+        }
+        foreach ($week as $key => $value) {
+            $getvalue = service_time::where('salon_id',$id)->where('days',$seven)->where('status',1)->first();
+            if(!empty($getvalue)){
+                if($seven == $value){
+                    $data[] = array(
+                    'weeks' => $value,
+                    'days' => date('d-m-Y', strtotime($seven)),
+                    'month' => date('M', strtotime($seven)),
+                    'date' => date('d', strtotime($seven)),
+                    );
+                } 
+            }
+        }
+        return response()->json($data);
     }
 
 

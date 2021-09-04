@@ -60,11 +60,11 @@ class AreaController extends Controller
             'country_name_english'=>'required',
             'country_name_arabic'=>'required',
             'phone_count'=>'required',
-            'image' => 'mimes:jpeg,jpg,png,pdf|max:1000', // max 1000kb
+            'image' => 'required|mimes:jpeg,jpg,png,pdf|max:1000', // max 1000kb
           ],[
             'image.mimes' => 'Only jpeg, png and jpg images are allowed',
             'image.max' => 'Sorry! Maximum allowed size for an image is 1MB',
-            //'image.required' => 'Item Image Field is Required',
+            'image.required' => 'Item Image Field is Required',
         ]);
         
         $country = new country;
