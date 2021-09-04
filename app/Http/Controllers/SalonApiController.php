@@ -415,7 +415,7 @@ class SalonApiController extends Controller
         $data =array();
         if(count($package) >0){
             foreach ($package as $key => $value) {
-                $pack = product::find($value->package_id);
+                $pack = product::find($value->product_id);
                 $data = array(
                     'product_id' => $value->product_id,
                     'product_name' => $value->product_name,
