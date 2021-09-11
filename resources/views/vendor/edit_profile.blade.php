@@ -50,7 +50,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label>Phone</label>
-                        <input value="{{$profile->phone}}" autocomplete="off" type="text" id="phone" name="phone" class="form-control">
+                        <input value="{{$profile->phone}}" autocomplete="off" type="number" id="phone" name="phone" class="form-control">
                     </div>
                 </div>
                 

@@ -172,6 +172,11 @@ class ServiceController extends Controller
             'package_name_english' => 'required|unique:packages,package_name_english,NULL,id,salon_id,'.Auth::user()->user_id,
             'package_name_arabic'=> 'required',
             'price'=> 'required',
+            'image' => 'required|mimes:jpeg,jpg,png|max:1000', // max 1000kb
+          ],[
+            'image.mimes' => 'Only jpeg, png and jpg images are allowed',
+            'image.max' => 'Sorry! Maximum allowed size for an image is 1MB',
+            'image.required' => 'Package Image Field is Required',
         ]);
 
         $service_ids='';
@@ -190,7 +195,7 @@ class ServiceController extends Controller
         if($request->file('image')!=""){
             $fileName = null;
             $image = $request->file('image');
-            $fileName = rand() . '.' . $image->getClientOriginalExtension();
+            $fileName = rand().time().'.'.$image->getClientOriginalExtension();
             $image->move(public_path('upload_files/'), $fileName);
         $package->image = $fileName;
         }
@@ -204,6 +209,11 @@ class ServiceController extends Controller
             'package_name_english' => 'required|unique:packages,package_name_english,'.$request->id.',id,salon_id,'.Auth::user()->user_id,
             'package_name_arabic'=> 'required',
             'price'=> 'required',
+            'image' => 'mimes:jpeg,jpg,png|max:1000', // max 1000kb
+          ],[
+            'image.mimes' => 'Only jpeg, png and jpg images are allowed',
+            'image.max' => 'Sorry! Maximum allowed size for an image is 1MB',
+            //'image.required' => 'Package Image Field is Required',
         ]);
 
         $service_ids='';
@@ -225,7 +235,7 @@ class ServiceController extends Controller
             }
             $fileName = null;
             $image = $request->file('image');
-            $fileName = rand() . '.' . $image->getClientOriginalExtension();
+            $fileName = rand().time().'.'.$image->getClientOriginalExtension();
             $image->move(public_path('upload_files/'), $fileName);
         $package->image = $fileName;
         }
@@ -240,6 +250,10 @@ class ServiceController extends Controller
     
     public function deleteServicePackage($id){
         $package = package::find($id);
+        $old_image = "upload_files/".$package->image;
+        if (file_exists($old_image)) {
+            @unlink($old_image);
+        }
         $package->delete();
         return response()->json(['message'=>'Successfully Delete'],200); 
     }

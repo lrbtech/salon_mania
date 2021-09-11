@@ -131,7 +131,7 @@
                 <div class="row">
                     <div class="form-group col-md-12">
                         <label>Price</label>
-                        <input autocomplete="off" type="text" id="price" name="price" class="form-control">
+                        <input autocomplete="off" type="number" id="price" name="price" class="form-control">
                     </div>
                 </div>
                 <div class="row">

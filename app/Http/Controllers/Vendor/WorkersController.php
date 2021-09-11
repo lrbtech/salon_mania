@@ -47,7 +47,7 @@ class WorkersController extends Controller
         if($request->file('certification_image')!=""){
             $fileName = null;
             $image = $request->file('certification_image');
-            $fileName = rand() . '.' . $image->getClientOriginalExtension();
+            $fileName = rand().time().'.'.$image->getClientOriginalExtension();
             $image->move(public_path('upload_files/'), $fileName);
         $salon_worker->certification_image = $fileName;
         }
@@ -89,7 +89,7 @@ class WorkersController extends Controller
             }
             $fileName = null;
             $image = $request->file('certification_image');
-            $fileName = rand() . '.' . $image->getClientOriginalExtension();
+            $fileName = rand().time().'.'.$image->getClientOriginalExtension();
             $image->move(public_path('upload_files/'), $fileName);
         $salon_worker->certification_image = $fileName;
         }
@@ -112,6 +112,10 @@ class WorkersController extends Controller
     
     public function deleteWorkers($id){
         $salon_worker = User::find($id);
+        $old_image = "upload_files/".$salon_worker->certification_image;
+        if (file_exists($old_image)) {
+            @unlink($old_image);
+        }
         $salon_worker->delete();
         return response()->json(['message'=>'Successfully Delete'],200); 
     }
@@ -153,7 +157,14 @@ class WorkersController extends Controller
             'email'=>'required|unique:users,email,'.$request->id,
             'phone'=>'required|unique:users,phone,'.$request->id,
             'password' => 'nullable|min:6|required_with:password_confirmation|same:password_confirmation',
-            'password_confirmation' => 'nullable|min:6'
+            'password_confirmation' => 'nullable|min:6',
+            'cover_image' => 'mimes:jpeg,jpg,png|max:1000', // max 1000kb
+            'profile_image' => 'mimes:jpeg,jpg,png|max:1000', // max 1000kb
+          ],[
+            'cover_image.mimes' => 'Only jpeg, png and jpg images are allowed',
+            'cover_image.max' => 'Sorry! Maximum allowed size for an image is 1MB',
+            'profile_image.mimes' => 'Only jpeg, png and jpg images are allowed',
+            'profile_image.max' => 'Sorry! Maximum allowed size for an image is 1MB',
         ]);
         
         $profile = User::find($request->id);
@@ -174,7 +185,7 @@ class WorkersController extends Controller
             }
             $fileName = null;
             $image = $request->file('cover_image');
-            $fileName = rand() . '.' . $image->getClientOriginalExtension();
+            $fileName = rand().time().'.'.$image->getClientOriginalExtension();
             $image->move(public_path('upload_files/'), $fileName);
         $profile->cover_image = $fileName;
         }
@@ -186,7 +197,7 @@ class WorkersController extends Controller
             }
             $fileName = null;
             $image = $request->file('profile_image');
-            $fileName = rand() . '.' . $image->getClientOriginalExtension();
+            $fileName = rand().time().'.'.$image->getClientOriginalExtension();
             $image->move(public_path('upload_files/'), $fileName);
         $profile->profile_image = $fileName;
         }
@@ -199,6 +210,11 @@ class WorkersController extends Controller
     public function saveGallery(Request $request){
         $request->validate([
             'name'=> 'required',
+            'image' => 'required|mimes:jpeg,jpg,png|max:1000', // max 1000kb
+          ],[
+            'image.mimes' => 'Only jpeg, png and jpg images are allowed',
+            'image.max' => 'Sorry! Maximum allowed size for an image is 1MB',
+            'image.required' => 'Gallery Image Field is Required',
         ]);
 
         $gallery = new gallery;
@@ -207,7 +223,7 @@ class WorkersController extends Controller
         if($request->file('image')!=""){
             $fileName = null;
             $image = $request->file('image');
-            $fileName = rand() . '.' . $image->getClientOriginalExtension();
+            $fileName = rand().time().'.'.$image->getClientOriginalExtension();
             $image->move(public_path('upload_gallery/'), $fileName);
         $gallery->image = $fileName;
         }
@@ -222,6 +238,10 @@ class WorkersController extends Controller
     
     public function deleteGallery($id){
         $gallery = gallery::find($id);
+        $old_image = "upload_gallery/".$gallery->image;
+        if (file_exists($old_image)) {
+            @unlink($old_image);
+        }
         $gallery->delete();
         return response()->json(['message'=>'Successfully Delete'],200); 
     }

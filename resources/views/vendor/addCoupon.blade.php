@@ -33,11 +33,11 @@
                     <div class="row">
                         <div class="col-12">
                                     
-                                	<form id="coupon_form" method="POST" enctype="multipart/form-data">
+                      <form id="coupon_form" method="POST" enctype="multipart/form-data">
                     	{{ csrf_field() }}
                     	<input type="hidden" value="{{ Request::segment(3) }}" name="id" id="id">
 
-						<div class="form-body">
+						          <div class="form-body">
                               
                               <h4 class="form-section"><i class="ft-clipboard"></i> Coupons</h4>
                               <div class="form-group row">
@@ -93,7 +93,7 @@
                                         <div class="form-group row">
                                           <label id="per" class="col-md-3 label-control" for="userinput2">Amount</label>
                                           <div class="col-md-9">
-                                            <input type="text" id="amount" name="amount" class="form-control border-primary" placeholder="Enter the discount Amount"
+                                            <input type="number" id="amount" name="amount" class="form-control border-primary" placeholder="Enter the discount Amount"
                                            >
                                           </div>
                                         </div>
@@ -132,7 +132,7 @@
                                         <div class="form-group row">
                                           <label class="col-md-3 label-control" for="userinput5">Usage Minimum Order Value</label>
                                           <div class="col-md-9">
-                                            <input class="form-control border-primary" type="text" placeholder="Enter min order value" id="min_order_val" name="min_order_val">
+                                            <input class="form-control border-primary" type="number" placeholder="Enter min order value" id="min_order_val" name="min_order_val">
                                           </div>
                                         </div>
                                       </div>
@@ -140,7 +140,7 @@
                                         <div class="form-group row">
                                           <label class="col-md-3 label-control" for="userinput6">Usage limit per user</label>
                                           <div class="col-md-9">
-                                            <input name="limit_per_user" id="limit_per_user" class="form-control border-primary" type="text" placeholder="enter per user limit">
+                                            <input name="limit_per_user" id="limit_per_user" class="form-control border-primary" type="number" placeholder="enter per user limit">
                                           </div>
                                         </div>
                                       </div>

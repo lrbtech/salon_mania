@@ -37,6 +37,11 @@ class ProductController extends Controller
             'product_name_arabic'=> 'required',
             'price'=> 'required',
             'description'=> 'required',
+            'image' => 'required|mimes:jpeg,jpg,png|max:1000', // max 1000kb
+          ],[
+            'image.mimes' => 'Only jpeg, png and jpg images are allowed',
+            'image.max' => 'Sorry! Maximum allowed size for an image is 1MB',
+            'image.required' => 'Product Image Field is Required',
         ]);
 
         $product = new product;
@@ -48,7 +53,7 @@ class ProductController extends Controller
         if($request->file('image')!=""){
             $fileName = null;
             $image = $request->file('image');
-            $fileName = rand() . '.' . $image->getClientOriginalExtension();
+            $fileName = rand().time().'.'.$image->getClientOriginalExtension();
             $image->move(public_path('upload_files/'), $fileName);
         $product->image = $fileName;
         }
@@ -63,6 +68,11 @@ class ProductController extends Controller
             'product_name_arabic'=> 'required',
             'price'=> 'required',
             'description'=> 'required',
+            'image' => 'mimes:jpeg,jpg,png|max:1000', // max 1000kb
+          ],[
+            'image.mimes' => 'Only jpeg, png and jpg images are allowed',
+            'image.max' => 'Sorry! Maximum allowed size for an image is 1MB',
+            //'image.required' => 'Product Image Field is Required',
         ]);
 
         $product = product::find($request->id);
@@ -77,7 +87,7 @@ class ProductController extends Controller
             }
             $fileName = null;
             $image = $request->file('image');
-            $fileName = rand() . '.' . $image->getClientOriginalExtension();
+            $fileName = rand().time().'.'.$image->getClientOriginalExtension();
             $image->move(public_path('upload_files/'), $fileName);
         $product->image = $fileName;
         }
@@ -92,6 +102,10 @@ class ProductController extends Controller
     
     public function deleteProduct($id){
         $product = product::find($id);
+        $old_image = "upload_files/".$product->image;
+        if (file_exists($old_image)) {
+            @unlink($old_image);
+        }
         $product->delete();
         return response()->json(['message'=>'Successfully Delete'],200); 
     }
