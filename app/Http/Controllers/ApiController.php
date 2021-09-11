@@ -1931,7 +1931,7 @@ if(count($coupon)>0){
         $postData->firstName = $customer->name; 
         $postData->email = $customer->email; 
         $postData->merchantAttributes = new StdClass();
-        $postData->merchantAttributes->redirectUrl = "http://86.97.188.149:5602/payment-success";
+        $postData->merchantAttributes->redirectUrl = "http://salonmania.ae/payment-success";
         $postData->amount = new StdClass();
         $postData->amount->currencyCode = "AED"; 
         $postData->amount->value = $amount; 
