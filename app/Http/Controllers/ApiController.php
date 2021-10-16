@@ -2288,8 +2288,15 @@ if(count($coupon)>0){
                     'product_id' => $value->product_id,
                     'product_name' => $value->product_name,
                     'product_price' => $value->price,
-                    'product_image' => $pack->image,
+                    'product_image' => '',
                 );
+                if(!empty($pack)){
+                    $data['product_image'] = $pack->image;
+                }
+                else{
+                    $data['product_image'] = 'no_product.jpg';
+                }
+
                 $datas[] = $data;
             }   
         }else{

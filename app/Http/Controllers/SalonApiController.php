@@ -479,7 +479,9 @@ class SalonApiController extends Controller
         $last7days = booking::where('salon_id',$user->user_id)->whereBetween('date', [$sevendays, $today])->get()->sum("total");
         $last30days = booking::where('salon_id',$user->user_id)->whereBetween('date', [$thirtydays, $today])->get()->sum("total");
 
-        $total_services = salon_service::where('salon_id',$user->user_id)->count();    
+        $total_services = salon_service::where('salon_id',$user->user_id)->count();
+        $total_products = product::where('salon_id',$user->user_id)->count();
+        $total_packages = package::where('salon_id',$user->user_id)->count();    
 
         $data = array(
             'total_booking' => $total_booking,
@@ -490,6 +492,8 @@ class SalonApiController extends Controller
             'last30days' => $last30days,
             'current_month_value' => $current_month_value,
             'total_services' => $total_services,
+            'total_products' => $total_products,
+            'total_packages' => $total_packages,
         );
     
         return response()->json($data); 
