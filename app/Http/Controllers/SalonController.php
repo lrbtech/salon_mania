@@ -102,7 +102,7 @@ class SalonController extends Controller
             ->addColumn('action', function ($salon) {
                 $output='';
                 if($salon->status == '0'){
-                    $output.='<a onclick="ChangeStatus('.$salon->id.',1)" class="dropdown-item" href="#"><i class="bx bx-lock-alt mr-1"></i> Active</a>';
+                    $output.='<a onclick="ChangeCommission('.$salon->id.')" class="dropdown-item" href="#"><i class="bx bx-lock-alt mr-1"></i> Active</a>';
                 }
                 elseif($salon->status == '1'){
                     $output.='<a onclick="ChangeStatus('.$salon->id.',1)" class="dropdown-item" href="#"><i class="bx bx-lock-alt mr-1"></i> Active</a>';
@@ -517,6 +517,18 @@ class SalonController extends Controller
         $salon->profile_image = $fileName;
         }
 
+        $salon->save();
+        return response()->json('successfully update'); 
+    }
+
+
+    public function updatecommission(Request $request){
+        $request->validate([
+            'commission_percentage'=>'required',
+        ]);
+        $salon = User::find($request->commission_id);
+        $salon->salon_commission = $request->commission_percentage;
+        $salon->status = 1;
         $salon->save();
         return response()->json('successfully update'); 
     }

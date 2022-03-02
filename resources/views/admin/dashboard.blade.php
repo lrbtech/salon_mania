@@ -706,7 +706,7 @@
                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu"></span>
                     <div class="dropdown-menu dropdown-menu-right">
                       <!-- <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> View</a> -->
-                      <a onclick="ChangeStatus({{$row->id}},1)" class="dropdown-item" href="#"><i class="bx bx-lock-alt mr-1"></i> Active</a>
+                      <a onclick="ChangeCommission({{$row->id}})" class="dropdown-item" href="#"><i class="bx bx-lock-alt mr-1"></i> Active</a>
                     </div>
                   </div>
                 </td>
@@ -734,6 +734,42 @@
 
             </div>
         </div>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="commission_modal" tabindex="-1" role="dialog" aria-labelledby="commission_modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-grey-dark-5">
+                <h6 class="modal-title text-white" id="modal-title">Add New</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="commission_form" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <input type="hidden" name="commission_id" id="commission_id">
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label>Commission Percentage</label>
+                            <select id="commission_percentage" name="commission_percentage" class="form-control">
+                                <option value="">SELECT</option>
+                                <?php for($i=1;$i<=20;$i++) { ?>
+                                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button onclick="UpdateCommission()" class="btn btn-primary btn-block mr-10" type="button">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Bootstrap Modal -->
 @endsection
 
 @section('js')
@@ -745,22 +781,53 @@
     <script src="/app-assets/js/scripts/pages/dashboard-ecommerce.min.js"></script>
     <script src="/app-assets/js/scripts/pages/dashboard-analytics.min.js"></script>
 <script>
-  $('.dashboard').addClass('active');
+$('.dashboard').addClass('active');
 
-    function ChangeStatus(id,id1){
-    var r = confirm("Are you sure");
-    if (r == true) {
-      $.ajax({
-        url : '/admin/ChangeStatus/'+id+'/'+id1,
-        type: "GET",
+function ChangeStatus(id,id1){
+  var r = confirm("Are you sure");
+  if (r == true) {
+    $.ajax({
+      url : '/admin/ChangeStatus/'+id+'/'+id1,
+      type: "GET",
+      dataType: "JSON",
+      success: function(data)
+      {
+        toastr.success(data, 'Successfully Update');
+        location.reload();
+      }
+    });
+  } 
+}
+
+function ChangeCommission(id){
+  $('input[name=commission_id]').val(id);
+  $('#commission_modal').modal('show');
+}
+
+function UpdateCommission(){
+  var formData = new FormData($('#commission_form')[0]);
+    $.ajax({
+        url : '/admin/update-commission',
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
         dataType: "JSON",
         success: function(data)
-        {
-          toastr.success(data, 'Successfully Update');
-          location.reload();
+        {                
+            $("#commission_form")[0].reset();
+            $('#commission_modal').modal('hide');
+            // var new_url = '/admin/get-salon/'+$('#search_busisness_type').val();
+            // orderPageTable.ajax.url(new_url).load();
+            toastr.success(data, 'Successfully Update');
+            location.reload();
+        },error: function (data) {
+            var errorData = data.responseJSON.errors;
+            $.each(errorData, function(i, obj) {
+            toastr.error(obj[0]);
+            });
         }
-      });
-    } 
+    });
 }
 
 </script>

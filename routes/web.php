@@ -105,6 +105,7 @@ Route::group(['prefix' => 'admin'],function(){
 
 	//salon
 	Route::POST('/save-salon', 'SalonController@saveSalon');
+	Route::POST('/update-commission', 'SalonController@updatecommission');
 	Route::POST('/update-salon', 'SalonController@updateSalon');
 	Route::get('/salon/{id}', 'SalonController@editSalon');
 	Route::get('/salon', 'SalonController@Salon');

@@ -2,7 +2,7 @@
 <div class="header-navbar navbar-expand-sm navbar navbar-horizontal navbar-fixed navbar-light navbar-without-dd-arrow" role="navigation" data-menu="menu-wrapper">
     <div class="navbar-header d-xl-none d-block">
         <ul class="nav navbar-nav flex-row">
-            <li class="nav-item mr-auto"><a class="navbar-brand" href="index.html">
+            <li class="nav-item mr-auto"><a class="navbar-brand" href="/vendor/dashboard">
                     <div class="brand-logo"><img class="logo" src="/images/logo/logo.png"></div>
                     <h2 class="brand-text mb-0">Salon Mania</h2>
                 </a></li>
@@ -12,13 +12,26 @@
     <div class="shadow-bottom"></div>
     <!-- Horizontal menu content-->
     <div class="navbar-container main-menu-content" data-menu="menu-container">
-        <!-- include /includes/mixins-->
+        <!-- include /includes/mixins -->
         <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="filled">
-
+<?php
+function isMobile() {
+    return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
+} 
+function isMobileDev(){
+    if(!empty($_SERVER['HTTP_USER_AGENT'])){
+       $user_ag = $_SERVER['HTTP_USER_AGENT'];
+       if(preg_match('/(Mobile|Android|Tablet|GoBrowser|[0-9]x[0-9]*|uZardWeb\/|Mini|Doris\/|Skyfire\/|iPhone|Fennec\/|Maemo|Iris\/|CLDC\-|Mobi\/)/uis',$user_ag)){
+          return true;
+       };
+    };
+    return false;
+}
+?>
             @if(!empty($role))
             
             @if($role->dashboard == 'on')
-            <li class="dashbord nav-item" data-menu="dropdown">
+            <li class="dashbord nav-item">
             	<a class="dropdown-toggle nav-link" href="/vendor/dashboard/">
             		<i class="menu-livicon" data-icon="desktop"></i>
             		<span data-i18n="Dashboard">Dashboard</span>
@@ -106,22 +119,22 @@
 
             @else
 
-            <li class="dashbord nav-item" data-menu="dropdown">
-                <a class="dropdown-toggle nav-link" href="/vendor/dashboard/">
+            <li class="dashbord nav-item">
+                <a class="nav-link" href="/vendor/dashboard/">
                     <i class="menu-livicon" data-icon="desktop"></i>
                     <span data-i18n="Dashboard">Dashboard</span>
                 </a>
             </li>
 
-            <li class="booking nav-item" data-menu="dropdown">
-            	<a class="dropdown-toggle nav-link" href="/vendor/get-booking">
+            <li class="booking nav-item" >
+            	<a class="nav-link" href="/vendor/get-booking">
             		<i class="menu-livicon" data-icon="briefcase"></i>
             		<span data-i18n="Booking">Booking</span>
             	</a>
             </li>
 
-            <li class="push-notification nav-item" data-menu="dropdown">
-                <a class="dropdown-toggle nav-link" href="/vendor/push-notification">
+            <li class="push-notification nav-item">
+                <a class="nav-link" href="/vendor/push-notification">
                 <i class="menu-livicon" data-icon="comments"></i>
                 <span>Push Notification</span></a>
             </li>
@@ -135,15 +148,15 @@
                 </ul>
             </li>
 
-            <li class="review nav-item" data-menu="dropdown">
-                <a class="dropdown-toggle nav-link" href="/vendor/review/">
+            <li class="review nav-item" >
+                <a class=" nav-link" href="/vendor/review/">
                     <i class="menu-livicon" data-icon="desktop"></i>
                     <span data-i18n="Review & Rating">Review & Rating</span>
                 </a>
             </li>
 
-            <li class="coupon nav-item" data-menu="dropdown">
-                <a class="dropdown-toggle nav-link" href="/vendor/coupon/">
+            <li class="coupon nav-item" >
+                <a class=" nav-link" href="/vendor/coupon/">
                     <i class="menu-livicon" data-icon="desktop"></i>
                     <span data-i18n="Coupon">Coupon</span>
                 </a>

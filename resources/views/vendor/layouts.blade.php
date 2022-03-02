@@ -37,7 +37,16 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
     <!-- END: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('toastr/toastr.css')}}">
+        <style>
+            @media screen and (max-width:768px) {
+          .navbar-brand {
+    
+    margin-right: 0rem;
 
+}
+            }
+  
+        </style>
     @yield('extra-css')
 
 </head>
@@ -254,7 +263,7 @@
 
     <!-- BEGIN: Page JS-->
     <script src="/app-assets/js/scripts/pages/dashboard-analytics.js"></script>
-    <!-- END: Page JS-->\
+    <!-- END: Page JS-->
     <script src="{{ asset('toastr/toastr.min.js')}}" type="text/javascript"></script>
     @yield('extra-js')
 

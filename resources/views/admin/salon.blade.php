@@ -286,7 +286,44 @@
                     </div>
                 </div>
                     <div class="form-group">
-                        <button onclick="Save()" id="saveButton" class="btn btn-primary btn-block mr-10" type="button">Add</button>
+                        <button onclick="Save()" class="btn btn-primary btn-block mr-10" type="button">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Bootstrap Modal -->
+
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="commission_modal" tabindex="-1" role="dialog" aria-labelledby="commission_modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-grey-dark-5">
+                <h6 class="modal-title text-white" id="modal-title">Add New</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="commission_form" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <input type="hidden" name="commission_id" id="commission_id">
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label>Commission Percentage</label>
+                            <select id="commission_percentage" name="commission_percentage" class="form-control">
+                                <option value="">SELECT</option>
+                                <?php for($i=1;$i<=20;$i++) { ?>
+                                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button onclick="UpdateCommission()" class="btn btn-primary btn-block mr-10" type="button">Update</button>
                     </div>
                 </form>
             </div>
@@ -385,7 +422,7 @@
                 
             </section>
             <div class="form-group">
-                <button onclick="UpdatePlan()" id="saveButton" class="btn btn-primary btn-block mr-10" type="button">Add</button>
+                <button onclick="UpdatePlan()" class="btn btn-primary btn-block mr-10" type="button">Add</button>
             </div>
         </form>
     </div>
@@ -647,23 +684,56 @@ function Delete(id){
     } 
 }
 
-function ChangeStatus(id,id1){
+function ChangeCommission(id){
+    $('input[name=commission_id]').val(id);
+    $('#commission_modal').modal('show');
+}
+    
+
+function ChangeStatus(id,status){
     var r = confirm("Are you sure");
     if (r == true) {
-      $.ajax({
-        url : '/admin/ChangeStatus/'+id+'/'+id1,
+    $.ajax({
+        url : '/admin/ChangeStatus/'+id+'/'+status,
         type: "GET",
         dataType: "JSON",
         success: function(data)
         {
-          toastr.success(data, 'Successfully Update');
-          
+        toastr.success(data, 'Successfully Update');
+        
             var new_url = '/admin/get-salon/'+$('#search_busisness_type').val();
             orderPageTable.ajax.url(new_url).load();
 
         }
-      });
+    });
     } 
+}
+
+function UpdateCommission(){
+  var formData = new FormData($('#commission_form')[0]);
+    $.ajax({
+        url : '/admin/update-commission',
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+        dataType: "JSON",
+        success: function(data)
+        {                
+            $("#commission_form")[0].reset();
+            $('#commission_modal').modal('hide');
+            
+            var new_url = '/admin/get-salon/'+$('#search_busisness_type').val();
+            orderPageTable.ajax.url(new_url).load();
+
+            toastr.success(data, 'Successfully Update');
+        },error: function (data) {
+            var errorData = data.responseJSON.errors;
+            $.each(errorData, function(i, obj) {
+            toastr.error(obj[0]);
+            });
+        }
+    });
 }
 
 </script>

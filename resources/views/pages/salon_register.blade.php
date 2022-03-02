@@ -66,6 +66,17 @@
     #searchInput:focus {
       border-color: #4d90fe;
     }
+.text-danger{
+    color:red;
+}
+.has-error label {
+    color: #cc0033;
+}
+.has-error .form-control {
+    /* background-color: #fce4e4; */
+    border: 1px solid #cc0033 !important;
+    outline: none !important;
+}
 </style>
   </head>
   <!-- END: Head-->
@@ -735,13 +746,11 @@ function init_Sign_Canvas() {
 </script>
 
 <script type="text/javascript">
-var resultInLogin;
-var resultInLogin1;
 function BasicValidate(){
     $(".text-danger").remove();
     $('.form-group').removeClass('has-error').removeClass('has-success');
     var formData = new FormData($('#form')[0]);
-    window.resultInLogin;
+    var result = false;
     $.ajax({
         url : '/salon-basic-validate',
         type: "POST",
@@ -749,11 +758,11 @@ function BasicValidate(){
         contentType: false,
         processData: false,
         dataType: "JSON",
+        async: false,
         success: function(data)
         {    
           console.log(data);   
-          resultInLogin = true;
-          //alert(resultInLogin);
+          result = true;
         },
         error: function (data) 
         {
@@ -762,18 +771,16 @@ function BasicValidate(){
             $("#"+i).after('<p class="text-danger">'+obj[0]+'</p>');
             $('#'+i).closest('.form-group').addClass('has-error');
           });
-          resultInLogin = false;
-          //alert(resultInLogin);
+          result = false;
         }
     });
-
-    return resultInLogin;
+    return result;
 }
 function ContactValidate(){
     $(".text-danger").remove();
     $('.form-group').removeClass('has-error').removeClass('has-success');
     var formData = new FormData($('#form')[0]);
-    window.resultInLogin1;
+    var result = false;
     $.ajax({
         url : '/salon-contact-validate',
         type: "POST",
@@ -781,11 +788,11 @@ function ContactValidate(){
         contentType: false,
         processData: false,
         dataType: "JSON",
+        async: false,
         success: function(data)
         {    
           console.log(data);   
-          resultInLogin1 = true;
-          //alert(resultInLogin);
+          result = true;
         },
         error: function (data) 
         {
@@ -794,12 +801,10 @@ function ContactValidate(){
             $("#"+i).after('<p class="text-danger">'+obj[0]+'</p>');
             $('#'+i).closest('.form-group').addClass('has-error');
           });
-          resultInLogin1 = false;
-          //alert(resultInLogin);
+          result = false;
         }
     });
-
-    return resultInLogin1;
+    return result;
 }
 
 $(".wizard-horizontal").steps({
