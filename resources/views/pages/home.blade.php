@@ -126,7 +126,7 @@
                                 </span>
                             </h1>
 
-            <strong class="text-slider"></strong>
+                            <strong class="text-slider"></strong>
                                 <p>We offer a full range of services from our team of professional experienced Hair Stylists & Beauticians, using the highest quality products available. The team are fully brand trained, regularly attending refresher courses at L'Oréal  to ensure that we are providing you with as high quality treatment as we possibly can.</p>
                                 <div class="slider-action-btn">
                                     <a href="#" class="btn softo-solid-btn"><i class="fa fa-apple"></i> Appstore</a>
@@ -138,22 +138,69 @@
                     <div class="col-md-4">
                         <div class="mobile-slider-area">
                             <div class="phone">
+<style>
+@media only screen and (max-width: 1920px) {
+  .playstore-slider {
+    width:370px !important;
+    height:480px !important;
+  }
+}
+@media only screen and (max-width: 1440px) {
+  .playstore-slider {
+    width:370px !important;
+    height:470px !important;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .playstore-slider {
+    width:370px !important;
+    height:550px !important;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .playstore-slider {
+    width:370px !important;
+    height:850px !important;
+  }
+}
+@media only screen and (max-width: 426px) {
+  .playstore-slider {
+    /* width:370px !important; */
+    height:520px !important;
+  }
+}
+@media only screen and (max-width: 376px) {
+  .playstore-slider {
+    /* width:370px !important; */
+    height:480px !important;
+  }
+}
+@media only screen and (max-width: 321px) {
+  .playstore-slider {
+    /* width:370px !important; */
+    height:390px !important;
+  }
+}
+</style>
                                 <img src="/website/img/iphone-x-frame.png" alt="Phone" class="img-responsive">
                                 <div class="mobile-slider owl-carousel owl-theme">
-                                    <div class="item"><img src="/website/img/top-screen-1.png" alt="Screen 1"
-                                                           class="img-responsive"></div>
-                                    <!-- <div class="item"><img src="/website/img/top-screen-5.png" alt="Screen 1"
+                                    <div class="item"><img src="/images/playstore/image-1.jpg" alt="Salon Mania" class="img-responsive playstore-slider"></div>
+                                    <div class="item"><img src="/images/playstore/image-2.jpg" alt="Salon Mania" class="img-responsive playstore-slider"></div>
+                                    <div class="item"><img src="/images/playstore/image-3.jpg" alt="Salon Mania" class="img-responsive playstore-slider"></div>
+                                    <div class="item"><img src="/images/playstore/image-4.jpg" alt="Salon Mania" class="img-responsive playstore-slider"></div>
+                                    <div class="item"><img src="/images/playstore/image-5.jpg" alt="Salon Mania" class="img-responsive playstore-slider"></div>
+                                    <!--  <div class="item"><img src="/website/img/top-screen-5.png" alt="Screen 1"
                                                            class="img-responsive"></div>
                                     <div class="item"><img src="/website/img/top-screen-2.png" alt="Screen 2"
                                                            class="img-responsive"></div>
                                     <div class="item"><img src="/website/img/top-screen-6.png" alt="Screen 2"
-                                                           class="img-responsive"></div> -->
+                                                           class="img-responsive"></div>
                                     <div class="item"><img src="/website/img/top-screen-3.png" alt="Screen 3"
                                                            class="img-responsive"></div>
                                     <div class="item"><img src="/website/img/top-screen-7.png" alt="Screen 3"
                                                            class="img-responsive"></div>
                                     <div class="item"><img src="/website/img/top-screen-8.png" alt="Screen 3"
-                                                           class="img-responsive"></div>
+                                                           class="img-responsive"></div> -->
                                 </div>
                             </div>
 
@@ -185,9 +232,7 @@
                         <div class="col-md-12">
                                 <div class="section-heading text-center">
                                 <h3>Only One App<br/>Countless Services.</h3>
-                                <p>Continually network virtual strategic theme areas vis-a-vis ubiquitous
-                                potentialities. Holisticly negotiate focused e-tailers without premium
-                                solutions. </p>
+                                <p>Salon Mania is the mobile application which is connected all the salons, spa, make artist, beauty clinic, Pets , Dermatology  in United Arab Emirates. More than 200 salons are connected in our salon mania Application. </p>
                                 </div>
                         </div>
                     </div>
@@ -197,8 +242,7 @@
                                 <div class="single-promo-content">
                                     <span class="ti-face-smile  "></span>
                                     <h6>Easy To Use</h6>
-                                    <p>Lorem ipsum dolor sit amet, eam ex probo tation tractatos. Ut vel hinc solet
-                                        tincidunt.</p>
+                                    <p>LET’S GET THINGS STARTED. TO REGISTER YOUR SALON OR BEAUTY RETAIL BUSINESS, SIMPLY SUBMIT YOUR BUSINESS AND CONTACT INFORMATION.</p>
                                 </div>
                                 <div class="line"></div>
                             </div>
@@ -208,8 +252,7 @@
                                 <div class="single-promo-content">
                                     <span class="ti-vector"></span>
                                     <h6>Awesome Design</h6>
-                                    <p>Lorem ipsum dolor sit amet, eam ex probo tation tractatos. Ut vel hinc solet
-                                        tincidunt.</p>
+                                    <p>IT’S TIME TO GROW YOUR REVENUE, CUSTOMER BASE AND EXPOSURE. YOU HAVE THE SERVICES AND PRODUCTS. WE HAVE THE TECH AND REACH</p>
                                 </div>
                                 <div class="line"></div>
                             </div>
@@ -219,8 +262,7 @@
                                 <div class="single-promo-content">
                                     <span class="ti-palette"></span>
                                     <h6>Easy To Customize</h6>
-                                    <p>Lorem ipsum dolor sit amet, eam ex probo tation tractatos. Ut vel hinc solet
-                                        tincidunt.</p>
+                                    <p>WE WORK WITH ONLY THE BEST. OUR SALON PARTNERS ARE THE TOP ECHELON IN THE WORLD’S MOST COSMOPOLITAN CITIES.YOU HAVE A WORLD-CLASS SEAL.</p>
                                 </div>
                                 <div class="line"></div>
                             </div>
@@ -230,8 +272,8 @@
                                 <div class="single-promo-content">
                                     <span class="ti-headphone-alt"></span>
                                     <h6>24/7 Support</h6>
-                                    <p>Lorem ipsum dolor sit amet, eam ex probo tation tractatos. Ut vel hinc solet
-                                        tincidunt.</p>
+                                    <p> INTEGRATED WITH MOBILE APPLICATION FOR IPHONE AND ANDROID USERS CAN BOOK THE APPOINTMENTS.
+                                        </p>
                                 </div>
                                 <div class="line"></div>
                             </div>
@@ -244,8 +286,7 @@
                                 <div class="single-promo-content">
                                     <span class="ti-face-smile  "></span>
                                     <h6>Easy To Use</h6>
-                                    <p>Lorem ipsum dolor sit amet, eam ex probo tation tractatos. Ut vel hinc solet
-                                        tincidunt.</p>
+                                    <p>Our professional will help you find the trendy look with our service in salon mania.</p>
                                 </div>
                                 <div class="line"></div>
                             </div>
@@ -255,8 +296,7 @@
                                 <div class="single-promo-content">
                                     <span class="ti-vector"></span>
                                     <h6>Awesome Design</h6>
-                                    <p>Lorem ipsum dolor sit amet, eam ex probo tation tractatos. Ut vel hinc solet
-                                        tincidunt.</p>
+                                    <p> CHOOSE ANY SERVICES AND FIX AN APPOINTMENT FROM THEIR PHONES, MAKE A PAYMENT TO YOUR SPA LOCATION.</p>
                                 </div>
                                 <div class="line"></div>
                             </div>
@@ -266,8 +306,7 @@
                                 <div class="single-promo-content">
                                     <span class="ti-palette"></span>
                                     <h6>Easy To Customize</h6>
-                                    <p>Lorem ipsum dolor sit amet, eam ex probo tation tractatos. Ut vel hinc solet
-                                        tincidunt.</p>
+                                    <p>BOOK NOW FOR THE BEST IN CLASS SERVICES! BE IT FOR A PARTY, FESTIVAL!.</p>
                                 </div>
                                 <div class="line"></div>
                             </div>
@@ -277,8 +316,7 @@
                                 <div class="single-promo-content">
                                     <span class="ti-headphone-alt"></span>
                                     <h6>24/7 Support</h6>
-                                    <p>Lorem ipsum dolor sit amet, eam ex probo tation tractatos. Ut vel hinc solet
-                                        tincidunt.</p>
+                                    <p>We have the best support 24/7 over chat system to answer all your query to serve better.</p>
                                 </div>
                                 <div class="line"></div>
                             </div>
@@ -296,9 +334,7 @@
                     <div class="col-md-12">
                         <div class="section-heading text-center">
                             <h3>Salon Mania Features</h3>
-                            <p>Continually network virtual strategic theme areas vis-a-vis ubiquitous
-                                potentialities. Holisticly negotiate focused e-tailers without premium
-                                solutions. </p>
+                            <p>We found some best registered Barbours in United Arab Emirates. Who can provide best service in salons & Spa. </p>
                         </div>
                     </div>
                 </div>
@@ -313,7 +349,7 @@
                             </div>
                             <div class="feature-content">
                                 <h5>Responsive web design</h5>
-                                <p class="mb-0">Modular and interchangable componente between layouts and even demos.</p>
+                                <p class="mb-0">Improved web design to all the users to have right selection.</p>
                             </div>
                         </div>
                         <!--feature single end-->
@@ -326,7 +362,7 @@
                             </div>
                             <div class="feature-content">
                                 <h5>Loaded with features</h5>
-                                <p class="mb-0">Modular and interchangable componente between layouts and even demos.</p>
+                                <p class="mb-0">One Hub for all your needs buy products and services at one go.</p>
                             </div>
                         </div>
                         <!--feature single end-->
@@ -339,7 +375,7 @@
                             </div>
                             <div class="feature-content">
                                 <h5>Friendly online support</h5>
-                                <p class="mb-0">Modular and interchangable componente between layouts and even demos.</p>
+                                <p class="mb-0"> We are connected with you 24/7 to asssit you better in all needs.</p>
                             </div>
                         </div>
                         <!--feature single end-->
@@ -359,7 +395,7 @@
                             </div>
                             <div class="feature-content">
                                 <h5>Free updates forever</h5>
-                                <p class="mb-0">Modular and interchangable componente between layouts and even demos.</p>
+                                <p class="mb-0">Get updates on latestet features on the go.</p>
                             </div>
                         </div>
                         <!--feature single end-->
@@ -372,7 +408,7 @@
                             </div>
                             <div class="feature-content">
                                 <h5>Infinite colors</h5>
-                                <p class="mb-0">Modular and interchangable componente between layouts and even demos.</p>
+                                <p class="mb-0">You can find all the shops required at single hub.</p>
                             </div>
                         </div>
                         <!--feature single end-->
@@ -385,7 +421,7 @@
                             </div>
                             <div class="feature-content">
                                 <h5>Friendly online support</h5>
-                                <p class="mb-0">Modular and interchangable componente between layouts and even demos.</p>
+                                <p class="mb-0">Using the app is easy to navigate on your needs.</p>
                             </div>
                         </div>
                         <!--feature single end-->
@@ -426,8 +462,8 @@
                         <div class="col-md-12">
                             <div class="section-heading text-center">
                                 <h3>10k+ Experts Trust Us</h3>
-                                <p>Streamlining different processes and workflows by using user access control Onebook
-                                    prompts efficiency and productivity levels of an organization, and reduces operating
+                                <p>Streamlining different processes and workflows by using user access control admin
+                                    prompts efficiency and productivity levels of an each spa, salon, petcare and lot more, and reduces operating
                                     costs.</p>
                             </div>
                         </div>
@@ -475,16 +511,13 @@
                                     <div class="single-testimonial-item">
                                         <span class="blockquote-icon"><i class="fa fa-quote-left"></i></span>
                                         <div class="testimonial-content">
-                                            <p>Professionally grow backward-compatible data without tactical alignments.
-                                                Completely whiteboard cooperative schemas rather than cross-platform
-                                                intellectual capital. Quickly benchmark wireless relationships via
-                                                client-centered models.</p>
+                                            <p>Best app to use for all spa / petcare and beatuty product needs, happy to use this app.</p>
                                         </div>
                                         <div class="testimonial-author">
                                             <img src="/website/img/testimonial-4.png" alt="">
                                             <div class="testimonial-author-info">
-                                                <h6>Beatrice Evans</h6>
-                                                <span>Digital Marketer</span>
+                                                <h6>Mohamed al Khalid Shamsi</h6>
+                                                <span> App user</span>
                                             </div>
                                         </div>
                                     </div>
@@ -493,15 +526,12 @@
                                     <div class="single-testimonial-item">
                                         <span class="blockquote-icon"><i class="fa fa-quote-left"></i></span>
                                         <div class="testimonial-content">
-                                            <p>Professionally grow backward-compatible data without tactical alignments.
-                                                Completely whiteboard cooperative schemas rather than cross-platform
-                                                intellectual capital. Quickly benchmark wireless relationships via
-                                                client-centered models.</p>
+                                            <p>Clean Interface and easy access with online payment loved using this app.</p>
                                         </div>
                                         <div class="testimonial-author">
                                             <img src="/website/img/testimonial-4.png" alt="">
                                             <div class="testimonial-author-info">
-                                                <h6>Beatrice Evans</h6>
+                                                <h6>Lao min Ju shu</h6>
                                                 <span>Digital Marketer</span>
                                             </div>
                                         </div>
@@ -538,13 +568,7 @@
                                     </div>
                                     <div id="collapseOne" class="panel-collapse collapse">
                                         <div class="panel-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nisl
-                                                lorem,
-                                                dictum id pellentesque at, vestibulum ut arcu. Curabitur erat libero,
-                                                egestas eu
-                                                tincidunt ac, rutrum ac justo. Vivamus condimentum laoreet lectus,
-                                                blandit
-                                                posuere tortor aliquam vitae. Curabitur molestie eros. </p>
+                                            <p>New Design concept for easy buyer journey. </p>
                                         </div>
                                     </div>
                                 </div>
@@ -560,13 +584,7 @@
                                     </div>
                                     <div id="collapseTwo" class="panel-collapse collapse">
                                         <div class="panel-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nisl
-                                                lorem,
-                                                dictum id pellentesque at, vestibulum ut arcu. Curabitur erat libero,
-                                                egestas eu
-                                                tincidunt ac, rutrum ac justo. Vivamus condimentum laoreet lectus,
-                                                blandit
-                                                posuere tortor aliquam vitae. Curabitur molestie eros. </p>
+                                            <p>New users can easly navigate through the app for new orders and customized profile for each users. </p>
                                         </div>
                                     </div>
                                 </div>
@@ -582,13 +600,7 @@
                                     </div>
                                     <div id="collapseThree" class="panel-collapse collapse">
                                         <div class="panel-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nisl
-                                                lorem,
-                                                dictum id pellentesque at, vestibulum ut arcu. Curabitur erat libero,
-                                                egestas eu
-                                                tincidunt ac, rutrum ac justo. Vivamus condimentum laoreet lectus,
-                                                blandit
-                                                posuere tortor aliquam vitae. Curabitur molestie eros. </p>
+                                            <p> works fine with web, smartphones, the shop owners can use mobile or web for all orders. </p>
                                         </div>
                                     </div>
                                 </div>
@@ -604,13 +616,7 @@
                                     </div>
                                     <div id="collapseFour" class="panel-collapse collapse">
                                         <div class="panel-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nisl
-                                                lorem,
-                                                dictum id pellentesque at, vestibulum ut arcu. Curabitur erat libero,
-                                                egestas eu
-                                                tincidunt ac, rutrum ac justo. Vivamus condimentum laoreet lectus,
-                                                blandit
-                                                posuere tortor aliquam vitae. Curabitur molestie eros. </p>
+                                            <p>Best UI views and lot more updates in every 3 months ot 6 months. </p>
                                         </div>
                                     </div>
                                 </div>
@@ -710,15 +716,14 @@
                             <div class="section-heading">
                                 <h3>Contact with us</h3>
                                 <p>It's very easy to get in touch with us. Just use the contact form or pay us a
-                                    visit for a coffee at the office. Dynamically innovate competitive technology after an expanded array of leadership.</p>
+                                    visit for a coffee at the office after an expanded array of leadership.</p>
                             </div>
                             <div class="footer-address">
                                 <h6>Head Office</h6>
-                                <p>121 King St, Melbourne VIC 3000, Australia</p>
+                                <p> Abu dhabi </p>
                                 <ul>
-                                    <li><i class="fa fa-phone"></i> <span>Phone: +61 2 8376 6284</span></li>
-                                    <li><i class="fa fa-envelope-o"></i> <span>Email : <a
-                                            href="mailto:hello@yourdomain.com">hello@yourdomain.com</a></span>
+                                    <li><i class="fa fa-envelope-o"></i> <span>Email :info@salonmania.ae <a
+                                            href="mailto:hello@yourdomain.com">info@yourdomain.com</a></span>
                                     </li>
                                 </ul>
                             </div>
@@ -757,8 +762,7 @@
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <div class="form-group">
-                                                    <textarea name="message" id="message" class="form-control" rows="7"
-                                                              cols="25" placeholder="Message"></textarea>
+                                            <textarea name="message" id="message" class="form-control" rows="7" cols="25" placeholder="Message"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -844,3 +848,4 @@
 <script src="/website/js/scripts.js"></script>
 </body>
 </html>
+
