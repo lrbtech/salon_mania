@@ -1417,7 +1417,7 @@ class ApiController extends Controller
             'review_average' => '',
             'salon_id' => $user->id,
             'busisness_type' => $user->busisness_type,
-            'cover_image' => $user->cover_image,
+            'cover_image' => '',
             'address' => $user->address,
             'salon_name' => $user->salon_name,
             'website' => $user->website,
@@ -1428,6 +1428,9 @@ class ApiController extends Controller
         );
         if(empty($user->salon_name)){
             $data['salon_name'] = $user->name;
+        }
+        if(!empty($user->cover_image)){
+            $data['cover_image'] = $user->cover_image;
         }
         $q =DB::table('reviews as r');
         $q->where('r.salon_id', '=', $user->id);
@@ -2467,6 +2470,7 @@ if(count($coupon)>0){
         $seven1 = date('Y-m-d', strtotime(' +6 day'));
         $seven = date('l', strtotime($seven1));
 
+        $data = array();
         $time = date("h:i A"); 
  
         $times = array('12:00 AM','01:00 AM','02:00 AM','03:00 AM','04:00 AM','05:00 AM','06:00 AM','07:00 AM','08:00 AM','09:00 AM','10:00 AM','11:00 AM','12:00 PM','01:00 PM','02:00 PM','03:00 PM','04:00 PM','05:00 PM','06:00 PM','07:00 PM','08:00 PM','09:00 PM','10:00 PM','11:00 PM');
