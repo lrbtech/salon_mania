@@ -38,6 +38,7 @@
                                                     <tr>
                                                         <th>Order ID</th>
                                                         <th>Customer Name</th>
+                                                        <th>Worker Name</th>
                                                         <th>Appointment Date/Time</th>
                                                         <th>Amount</th>
                                                         <th>Payment Mode</th>
@@ -56,6 +57,13 @@
                                                             @foreach($customer as $cus)
                                                             @if($cus->id == $row->customer_id)
                                                             {{$cus->name}}
+                                                            @endif
+                                                            @endforeach
+                                                        </td>
+                                                        <td>
+                                                            @foreach($salon_worker as $worker)
+                                                            @if($worker->id == $row->worker_id)
+                                                            {{$worker->name}}
                                                             @endif
                                                             @endforeach
                                                         </td>

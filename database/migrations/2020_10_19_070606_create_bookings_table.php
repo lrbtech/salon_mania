@@ -16,6 +16,7 @@ class CreateBookingsTable extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->string('salon_id')->nullable()->default('');
+            $table->string('worker_id')->nullable()->default('');
             $table->string('customer_id')->nullable()->default('');
             $table->string('order_id')->nullable()->default('');
             $table->string('pay_url')->nullable()->default('');

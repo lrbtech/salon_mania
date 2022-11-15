@@ -48,6 +48,8 @@ Route::get('/get-beauty-details/{id}/{lat}/{lng}', 'ApiController@getApiBeautyDe
 
 Route::get('/get-home-details/{id}/{lat}/{lng}', 'ApiController@getApiHomeDetails');
 
+Route::get('/get-salon-workers/{salon_id}', 'ApiController@getApiSalonWorkers');
+
 //homepage others
 Route::get('/get-other-services/{city}/{lat}/{lng}', 'ApiController@getApiOtherServices');
 Route::get('/get-other-all-services/{city}/{lat}/{lng}', 'ApiController@getApiAllOtherServices');
@@ -86,6 +88,7 @@ Route::post('/save-booking', 'ApiController@saveBooking');
 Route::post('/save-booking-item', 'ApiController@saveBookingItem');
 Route::post('/save-booking-package', 'ApiController@saveBookingPackage');
 Route::post('/save-booking-product', 'ApiController@saveBookingProduct');
+Route::post('/save-booking-worker', 'ApiController@savebookingworker');
 //appoinment done
 Route::get('/get-booking/{id}', 'ApiController@getBooking');
 //manage address get from 
@@ -95,6 +98,7 @@ Route::get('/get-booking-item/{id}', 'ApiController@getBookingItem');
 Route::get('/get-booking-package/{id}', 'ApiController@getBookingPackage');
 Route::get('/get-booking-product/{id}', 'ApiController@getBookingProduct');
 Route::get('/get-booking-transaction/{id}', 'ApiController@getBookingTransaction');
+Route::get('/get-booking-worker/{id}', 'ApiController@getbookingworker');
 
 Route::get('/get-package/{id}', 'ApiController@getShopPackage');
 Route::get('/get-package-services/{id}', 'ApiController@getPackageServices');

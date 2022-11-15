@@ -28,6 +28,7 @@ use App\app_salon;
 use App\app_spa;
 use App\product;
 use App\booking_product;
+use App\booking_worker;
 use Hash;
 use Auth;
 use DB;
@@ -1424,8 +1425,11 @@ class ApiController extends Controller
             'lat' => $user->latitude,
             'lng' => $user->longitude,
             'phone' => $user->phone,
-            'about_us' => $user->about_us,
+            'about_us' => '',
         );
+        if(!empty($user->about_english)){
+            $data['about_us'] = $user->about_english;
+        }
         if(empty($user->salon_name)){
             $data['salon_name'] = $user->name;
         }
@@ -1462,19 +1466,44 @@ class ApiController extends Controller
         return response()->json($data); 
     }
 
-    public function getShopWorkers($id){
+    public function getApiSalonWorkers($id){
         $user = User::where('user_id',$id)->get();
         $data =array();
         $datas =array();
         foreach ($user as $key => $value) {
             $data = array(
                 'worker_id' => $value->id,
-                'profile_image' => $value->profile_image,
+                'profile_image' => '',
                 'name' => $value->name,
                 'email' => $value->email,
                 'phone' => $value->phone,
             );
+            if($value->profile_image != ''){
+                $data['profile_image'] = $value->profile_image;
+            }
             $datas[] = $data;
+        }   
+        return response()->json($datas); 
+    }
+
+    public function getShopWorkers($id){
+        $user = User::where('user_id',$id)->get();
+        $data =array();
+        $datas =array();
+        foreach ($user as $key => $value) {
+            if($value->id != $id){
+                $data = array(
+                    'worker_id' => $value->id,
+                    'profile_image' => 'profile_image.png',
+                    'name' => $value->name,
+                    'email' => $value->email,
+                    'phone' => $value->phone,
+                );
+                if($value->profile_image != ''){
+                    $data['profile_image'] = $value->profile_image;
+                }
+                $datas[] = $data;
+            }
         }   
         return response()->json($datas); 
     }
@@ -1922,8 +1951,6 @@ if(count($coupon)>0){
         return $output->access_token;
     }
         
-        
-        
     private function createPaymentOrder($total,$id){
         // foreach(explode('.', $d) as $info) {
             
@@ -2078,6 +2105,7 @@ if(count($coupon)>0){
         $booking = new booking;
         $booking->b_id = $b_id;
         $booking->salon_id = $request->salon_id;
+        //$booking->worker_id = $request->worker_id;
         $booking->date = date('Y-m-d');
         $booking->customer_id = $request->customer_id;
         $booking->appointment_date = date('Y-m-d',strtotime($request->appointment_date));
@@ -2183,6 +2211,46 @@ if(count($coupon)>0){
         } 
     }
 
+    public function savebookingworker(Request $request){
+        try{
+            $worker = User::find($request->worker_id);
+
+            $booking_worker = new booking_worker;
+            $booking_worker->booking_id = $request->booking_id;
+            $booking_worker->worker_id = $request->worker_id;
+            $booking_worker->name = $worker->name;
+            $booking_worker->email = $worker->email;
+            $booking_worker->phone = $worker->phone;
+            $booking_worker->image = $worker->profile_image;
+            $booking_worker->save();
+        return response()->json(
+            ['message' => 'Save Successfully'],
+             200);
+        }catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(),'status'=>400], 400);
+        } 
+    }
+
+    public function getbookingworker($id){
+        $booking_worker = booking_worker::where('booking_id',$id)->get();
+        $data =array();
+        $datas =array();
+        foreach ($booking_worker as $key => $value) {
+            $data = array(
+                'worker_id' => $id,
+                'profile_image' => 'profile_image.png',
+                'name' => $value->name,
+                'email' => $value->email,
+                'phone' => $value->phone,
+            );
+            if($value->image != ''){
+                $data['profile_image'] = $value->image;
+            }
+            $datas[] = $data;
+        }   
+        return response()->json($datas); 
+    }
+
     public function getBooking($id){
         $booking = booking::where('customer_id',$id)->orderBy('id','DESC')->get();
         
@@ -2193,6 +2261,7 @@ if(count($coupon)>0){
             }
             else{
             $salon = User::find($value->salon_id);
+            //$worker = User::find($value->worker_id);            
             // return response()->json($salon); 
             $data = array(
                 'booking_id' => $value->id,
@@ -2214,7 +2283,15 @@ if(count($coupon)>0){
                 'coupon' => '',
                 'discount' => 0.0,
                 'address_id'=> (int)$value->address_id,
+                // 'worker_id' => $worker->id,
+                // 'worker_profile_image' => '',
+                // 'worker_name' => $worker->name,
+                // 'worker_email' => $worker->email,
+                // 'worker_phone' => $worker->phone,
             );
+            // if($worker->profile_image != ''){
+            //     $data['worker_profile_image'] = $worker->profile_image;
+            // }
             if($salon->latitude != null){
                 $data['latitude'] = $salon->latitude;
             }
